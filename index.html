@@ -15,7 +15,14 @@ h1{margin:0;font-size:27px}header p{margin:6px 0 0}main{padding:10px}
 th{background:var(--blue);color:#fff;padding:10px 8px;text-align:right}th:first-child,td.time{text-align:left}td{padding:10px 8px;text-align:right;border-bottom:1px solid #0001}
 td b{font-size:17px}.delta{display:inline-block;margin-left:5px;padding:2px 5px;background:#fff9;border-radius:999px;font-size:11px;font-weight:800;color:#4c5964}
 .calm{background:var(--calm)}.light{background:var(--light)}.good{background:var(--good)}.strong{background:var(--strong)}.vstrong{background:var(--vstrong)}.hard{background:var(--hard)}
-.g-light{background:#e5f5ef!important}.g-good{background:#dff4cf!important}.g-strong{background:#fff0b8!important}.g-vstrong{background:#ffd79a!important}.g-hard{background:#ffb4ad!important}
+.g-neutral{background:#f3f5f7!important}
+.g-light{background:#dff4cf!important}
+.g-strong{background:#ffe68a!important}
+.g-vstrong{background:#ffbd66!important}
+.g-hard{background:#ff7f73!important}
+.g-extreme{background:#b83232!important;color:#fff!important}
+.g-extreme small,.g-extreme .delta{color:#fff!important}
+.g-extreme .delta{background:rgba(255,255,255,.22)!important}
 footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 @media(max-width:680px){.heroGrid,.stats{grid-template-columns:1fr}main{padding:7px}}
 </style></head><body>
@@ -25,9 +32,10 @@ footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 <div class="heroGrid">
 <div><span>Najsilniejszy wiatr</span><b>13.7 kn · 15:00</b></div>
 <div><span>Najsilniejszy poryw</span><b>23.7 kn · 16:00</b></div>
-<div><span>Aktualizacja</span><b>14:15</b></div>
+<div><span>Aktualizacja</span><b>14:30</b></div>
 </div>
-<div class="legend"><i style="background:var(--calm)">0–8</i><i style="background:var(--light)">8–12</i><i style="background:var(--good)">12–16</i><i style="background:var(--strong)">16–20</i><i style="background:var(--vstrong)">20–24</i><i style="background:var(--hard)">24+ kn</i></div>
+<div class="legend"><i style="background:var(--calm)">wiatr 0–8</i><i style="background:var(--light)">8–12</i><i style="background:var(--good)">12–16</i><i style="background:var(--strong)">16–20</i><i style="background:var(--vstrong)">20–24</i><i style="background:var(--hard)">24+ kn</i></div>
+<div class="legend"><i style="background:#f3f5f7">poryw &lt;12</i><i style="background:#dff4cf">12–16</i><i style="background:#ffe68a">16–20</i><i style="background:#ffbd66">20–24</i><i style="background:#ff7f73">24–28</i><i style="background:#b83232;color:#fff">28+ kn</i></div>
 <div class="meta"><b>Model:</b> HungaroMet WRF · przebieg 16.08.2026 08:00<br>
 <b>Punkt docelowy:</b> 49.4375°N, 20.2454°E<br>
 <b>Punkt siatki:</b> 49.0000°N, 20.0000°E</div>
@@ -45,7 +53,7 @@ footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 <tr class="light">
 <td class="time">14:00</td>
 <td><b>8.8</b> <small>kn</small></td>
-<td class="gust g-light"><b>9.2</b> <small>kn</small><span class="delta">+0.4</span></td>
+<td class="gust g-neutral"><b>9.2</b> <small>kn</small><span class="delta">+0.4</span></td>
 <td><b>N</b> <span class="deg">349°</span></td>
 </tr>
 <tr class="light">
@@ -63,43 +71,43 @@ footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 <tr class="light">
 <td class="time">17:00</td>
 <td><b>8.2</b> <small>kn</small></td>
-<td class="gust g-good"><b>15.2</b> <small>kn</small><span class="delta">+7.0</span></td>
+<td class="gust g-light"><b>15.2</b> <small>kn</small><span class="delta">+7.0</span></td>
 <td><b>NNW</b> <span class="deg">343°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">18:00</td>
 <td><b>7.4</b> <small>kn</small></td>
-<td class="gust g-good"><b>12.9</b> <small>kn</small><span class="delta">+5.5</span></td>
+<td class="gust g-light"><b>12.9</b> <small>kn</small><span class="delta">+5.5</span></td>
 <td><b>N</b> <span class="deg">355°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">19:00</td>
 <td><b>7.7</b> <small>kn</small></td>
-<td class="gust g-light"><b>11.1</b> <small>kn</small><span class="delta">+3.4</span></td>
+<td class="gust g-neutral"><b>11.1</b> <small>kn</small><span class="delta">+3.4</span></td>
 <td><b>NNW</b> <span class="deg">345°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">20:00</td>
 <td><b>4.2</b> <small>kn</small></td>
-<td class="gust g-light"><b>5.3</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td class="gust g-neutral"><b>5.3</b> <small>kn</small><span class="delta">+1.1</span></td>
 <td><b>NW</b> <span class="deg">319°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">21:00</td>
 <td><b>4.0</b> <small>kn</small></td>
-<td class="gust g-light"><b>5.1</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td class="gust g-neutral"><b>5.1</b> <small>kn</small><span class="delta">+1.1</span></td>
 <td><b>WNW</b> <span class="deg">298°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">22:00</td>
 <td><b>2.9</b> <small>kn</small></td>
-<td class="gust g-light"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
+<td class="gust g-neutral"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
 <td><b>WNW</b> <span class="deg">290°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">23:00</td>
 <td><b>2.9</b> <small>kn</small></td>
-<td class="gust g-light"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
+<td class="gust g-neutral"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
 <td><b>W</b> <span class="deg">260°</span></td>
 </tr></tbody></table></div>
 </section>
@@ -115,85 +123,85 @@ footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 <tr class="calm">
 <td class="time">00:00</td>
 <td><b>5.8</b> <small>kn</small></td>
-<td class="gust g-light"><b>7.4</b> <small>kn</small><span class="delta">+1.6</span></td>
+<td class="gust g-neutral"><b>7.4</b> <small>kn</small><span class="delta">+1.6</span></td>
 <td><b>WNW</b> <span class="deg">302°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">01:00</td>
 <td><b>6.0</b> <small>kn</small></td>
-<td class="gust g-light"><b>7.8</b> <small>kn</small><span class="delta">+1.8</span></td>
+<td class="gust g-neutral"><b>7.8</b> <small>kn</small><span class="delta">+1.8</span></td>
 <td><b>WNW</b> <span class="deg">293°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">02:00</td>
 <td><b>3.6</b> <small>kn</small></td>
-<td class="gust g-light"><b>4.6</b> <small>kn</small><span class="delta">+1.0</span></td>
+<td class="gust g-neutral"><b>4.6</b> <small>kn</small><span class="delta">+1.0</span></td>
 <td><b>NW</b> <span class="deg">319°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">03:00</td>
 <td><b>4.4</b> <small>kn</small></td>
-<td class="gust g-light"><b>5.5</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td class="gust g-neutral"><b>5.5</b> <small>kn</small><span class="delta">+1.1</span></td>
 <td><b>NW</b> <span class="deg">305°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">04:00</td>
 <td><b>4.9</b> <small>kn</small></td>
-<td class="gust g-light"><b>6.3</b> <small>kn</small><span class="delta">+1.5</span></td>
+<td class="gust g-neutral"><b>6.3</b> <small>kn</small><span class="delta">+1.5</span></td>
 <td><b>WNW</b> <span class="deg">296°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">05:00</td>
 <td><b>3.3</b> <small>kn</small></td>
-<td class="gust g-light"><b>4.3</b> <small>kn</small><span class="delta">+0.9</span></td>
+<td class="gust g-neutral"><b>4.3</b> <small>kn</small><span class="delta">+0.9</span></td>
 <td><b>NW</b> <span class="deg">311°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">06:00</td>
 <td><b>1.2</b> <small>kn</small></td>
-<td class="gust g-light"><b>1.2</b> <small>kn</small><span class="delta">+0.0</span></td>
+<td class="gust g-neutral"><b>1.2</b> <small>kn</small><span class="delta">+0.0</span></td>
 <td><b>W</b> <span class="deg">277°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">07:00</td>
 <td><b>0.7</b> <small>kn</small></td>
-<td class="gust g-light"><b>2.3</b> <small>kn</small><span class="delta">+1.5</span></td>
+<td class="gust g-neutral"><b>2.3</b> <small>kn</small><span class="delta">+1.5</span></td>
 <td><b>NE</b> <span class="deg">52°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">08:00</td>
 <td><b>1.8</b> <small>kn</small></td>
-<td class="gust g-light"><b>5.8</b> <small>kn</small><span class="delta">+4.1</span></td>
+<td class="gust g-neutral"><b>5.8</b> <small>kn</small><span class="delta">+4.1</span></td>
 <td><b>NNW</b> <span class="deg">347°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">09:00</td>
 <td><b>4.4</b> <small>kn</small></td>
-<td class="gust g-light"><b>9.8</b> <small>kn</small><span class="delta">+5.3</span></td>
+<td class="gust g-neutral"><b>9.8</b> <small>kn</small><span class="delta">+5.3</span></td>
 <td><b>NW</b> <span class="deg">317°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">10:00</td>
 <td><b>7.2</b> <small>kn</small></td>
-<td class="gust g-good"><b>14.0</b> <small>kn</small><span class="delta">+6.8</span></td>
+<td class="gust g-light"><b>14.0</b> <small>kn</small><span class="delta">+6.8</span></td>
 <td><b>WNW</b> <span class="deg">285°</span></td>
 </tr>
 <tr class="light">
 <td class="time">11:00</td>
 <td><b>8.1</b> <small>kn</small></td>
-<td class="gust g-good"><b>12.4</b> <small>kn</small><span class="delta">+4.3</span></td>
+<td class="gust g-light"><b>12.4</b> <small>kn</small><span class="delta">+4.3</span></td>
 <td><b>W</b> <span class="deg">276°</span></td>
 </tr>
 <tr class="calm">
 <td class="time">12:00</td>
 <td><b>6.5</b> <small>kn</small></td>
-<td class="gust g-light"><b>11.3</b> <small>kn</small><span class="delta">+4.8</span></td>
+<td class="gust g-neutral"><b>11.3</b> <small>kn</small><span class="delta">+4.8</span></td>
 <td><b>WSW</b> <span class="deg">239°</span></td>
 </tr>
 <tr class="light">
 <td class="time">13:00</td>
 <td><b>10.1</b> <small>kn</small></td>
-<td class="gust g-good"><b>15.3</b> <small>kn</small><span class="delta">+5.2</span></td>
+<td class="gust g-light"><b>15.3</b> <small>kn</small><span class="delta">+5.2</span></td>
 <td><b>WNW</b> <span class="deg">283°</span></td>
 </tr>
 <tr class="good">
@@ -235,7 +243,7 @@ footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
 <tr class="light">
 <td class="time">20:00</td>
 <td><b>8.5</b> <small>kn</small></td>
-<td class="gust g-good"><b>12.9</b> <small>kn</small><span class="delta">+4.4</span></td>
+<td class="gust g-light"><b>12.9</b> <small>kn</small><span class="delta">+4.4</span></td>
 <td><b>NNW</b> <span class="deg">338°</span></td>
 </tr></tbody></table></div>
 </section>
