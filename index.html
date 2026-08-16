@@ -1,26 +1,243 @@
 <!doctype html>
-<html lang="pl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="pl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Czorsztyn – WRF 1,5 km</title>
 <style>
-body{margin:0;background:#edf2f6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#17202a}
-header{background:linear-gradient(135deg,#074b7d,#0b65a8);color:#fff;padding:22px 15px}
-main,header div{max-width:900px;margin:auto}
-main{padding:12px}
-.card{background:#fff;border-radius:16px;padding:18px;margin-top:14px;box-shadow:0 2px 12px #0001}
-h1{margin:0;font-size:27px}p{line-height:1.5}
-</style>
-</head>
-<body>
-<header><div><h1>🌬️ Czorsztyn – WRF 1,5 km</h1><p>Jezioro Czorsztyńskie · wysokość Maniów</p></div></header>
+:root{--blue:#0b65a8;--bg:#edf2f6;--text:#17202a;--calm:#eef2f5;--light:#e5f5ef;--good:#dff4cf;--strong:#fff0b8;--vstrong:#ffd79a;--hard:#ffb4ad}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text)}
+header{background:linear-gradient(135deg,#074b7d,var(--blue));color:#fff;padding:20px 14px}.inner,main{max-width:920px;margin:auto}
+h1{margin:0;font-size:27px}header p{margin:6px 0 0}main{padding:10px}
+.hero,.card{background:#fff;border-radius:16px;margin-bottom:14px;box-shadow:0 2px 12px #0001;overflow:hidden}
+.hero{padding:14px}.heroGrid,.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+.heroGrid div,.stats div{padding:10px;background:#f8fafb}span,small,.deg{color:#61707c}.heroGrid span,.stats span{display:block;font-size:11px;margin-bottom:3px}
+.meta{font-size:13px;color:#61707c;line-height:1.55;margin-top:10px}.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.legend i{font-style:normal;padding:5px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.dayhead{padding:14px;border-bottom:1px solid #e5e9ed}.dayhead h2{margin:0;font-size:23px}.wrap{overflow-x:auto}table{width:100%;min-width:560px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{background:var(--blue);color:#fff;padding:10px 8px;text-align:right}th:first-child,td.time{text-align:left}td{padding:10px 8px;text-align:right;border-bottom:1px solid #0001}
+td b{font-size:17px}.delta{display:inline-block;margin-left:5px;padding:2px 5px;background:#fff9;border-radius:999px;font-size:11px;font-weight:800;color:#4c5964}
+.calm{background:var(--calm)}.light{background:var(--light)}.good{background:var(--good)}.strong{background:var(--strong)}.vstrong{background:var(--vstrong)}.hard{background:var(--hard)}
+.g-light{background:#e5f5ef!important}.g-good{background:#dff4cf!important}.g-strong{background:#fff0b8!important}.g-vstrong{background:#ffd79a!important}.g-hard{background:#ffb4ad!important}
+footer{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}
+@media(max-width:680px){.heroGrid,.stats{grid-template-columns:1fr}main{padding:7px}}
+</style></head><body>
+<header><div class="inner"><h1>🌬️ Czorsztyn – WRF 1,5 km</h1><p>Jezioro Czorsztyńskie · wysokość Maniów</p></div></header>
 <main>
-<div class="card">
-<h2>Strona przygotowana</h2>
-<p>Prognoza pojawi się po pierwszym uruchomieniu automatycznej aktualizacji GitHub Actions.</p>
-<p><b>Punkt:</b> 49.4375°N, 20.2454°E</p>
+<div class="hero">
+<div class="heroGrid">
+<div><span>Najsilniejszy wiatr</span><b>13.7 kn · 15:00</b></div>
+<div><span>Najsilniejszy poryw</span><b>23.7 kn · 16:00</b></div>
+<div><span>Aktualizacja</span><b>14:15</b></div>
 </div>
-</main>
-</body>
-</html>
+<div class="legend"><i style="background:var(--calm)">0–8</i><i style="background:var(--light)">8–12</i><i style="background:var(--good)">12–16</i><i style="background:var(--strong)">16–20</i><i style="background:var(--vstrong)">20–24</i><i style="background:var(--hard)">24+ kn</i></div>
+<div class="meta"><b>Model:</b> HungaroMet WRF · przebieg 16.08.2026 08:00<br>
+<b>Punkt docelowy:</b> 49.4375°N, 20.2454°E<br>
+<b>Punkt siatki:</b> 49.0000°N, 20.0000°E</div>
+</div>
+
+<section class="card">
+<div class="dayhead"><h2>Dzisiaj</h2><div>16.08.2026</div></div>
+<div class="stats">
+<div><span>Średnio</span><b>6.4 kn</b></div>
+<div><span>Maks. wiatr</span><b>9.4 kn · 15:00</b></div>
+<div><span>Maks. poryw</span><b>17.4 kn · 15:00</b></div>
+</div>
+<div class="wrap"><table><thead><tr><th>Godz.</th><th>Wiatr</th><th>Porywy</th><th>Kierunek</th></tr></thead>
+<tbody>
+<tr class="light">
+<td class="time">14:00</td>
+<td><b>8.8</b> <small>kn</small></td>
+<td class="gust g-light"><b>9.2</b> <small>kn</small><span class="delta">+0.4</span></td>
+<td><b>N</b> <span class="deg">349°</span></td>
+</tr>
+<tr class="light">
+<td class="time">15:00</td>
+<td><b>9.4</b> <small>kn</small></td>
+<td class="gust g-strong"><b>17.4</b> <small>kn</small><span class="delta">+8.0</span></td>
+<td><b>NNW</b> <span class="deg">344°</span></td>
+</tr>
+<tr class="light">
+<td class="time">16:00</td>
+<td><b>8.8</b> <small>kn</small></td>
+<td class="gust g-strong"><b>16.4</b> <small>kn</small><span class="delta">+7.7</span></td>
+<td><b>NNW</b> <span class="deg">347°</span></td>
+</tr>
+<tr class="light">
+<td class="time">17:00</td>
+<td><b>8.2</b> <small>kn</small></td>
+<td class="gust g-good"><b>15.2</b> <small>kn</small><span class="delta">+7.0</span></td>
+<td><b>NNW</b> <span class="deg">343°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">18:00</td>
+<td><b>7.4</b> <small>kn</small></td>
+<td class="gust g-good"><b>12.9</b> <small>kn</small><span class="delta">+5.5</span></td>
+<td><b>N</b> <span class="deg">355°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">19:00</td>
+<td><b>7.7</b> <small>kn</small></td>
+<td class="gust g-light"><b>11.1</b> <small>kn</small><span class="delta">+3.4</span></td>
+<td><b>NNW</b> <span class="deg">345°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">20:00</td>
+<td><b>4.2</b> <small>kn</small></td>
+<td class="gust g-light"><b>5.3</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td><b>NW</b> <span class="deg">319°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">21:00</td>
+<td><b>4.0</b> <small>kn</small></td>
+<td class="gust g-light"><b>5.1</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td><b>WNW</b> <span class="deg">298°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">22:00</td>
+<td><b>2.9</b> <small>kn</small></td>
+<td class="gust g-light"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
+<td><b>WNW</b> <span class="deg">290°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">23:00</td>
+<td><b>2.9</b> <small>kn</small></td>
+<td class="gust g-light"><b>3.6</b> <small>kn</small><span class="delta">+0.7</span></td>
+<td><b>W</b> <span class="deg">260°</span></td>
+</tr></tbody></table></div>
+</section>
+<section class="card">
+<div class="dayhead"><h2>Jutro</h2><div>17.08.2026</div></div>
+<div class="stats">
+<div><span>Średnio</span><b>7.0 kn</b></div>
+<div><span>Maks. wiatr</span><b>13.7 kn · 15:00</b></div>
+<div><span>Maks. poryw</span><b>23.7 kn · 16:00</b></div>
+</div>
+<div class="wrap"><table><thead><tr><th>Godz.</th><th>Wiatr</th><th>Porywy</th><th>Kierunek</th></tr></thead>
+<tbody>
+<tr class="calm">
+<td class="time">00:00</td>
+<td><b>5.8</b> <small>kn</small></td>
+<td class="gust g-light"><b>7.4</b> <small>kn</small><span class="delta">+1.6</span></td>
+<td><b>WNW</b> <span class="deg">302°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">01:00</td>
+<td><b>6.0</b> <small>kn</small></td>
+<td class="gust g-light"><b>7.8</b> <small>kn</small><span class="delta">+1.8</span></td>
+<td><b>WNW</b> <span class="deg">293°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">02:00</td>
+<td><b>3.6</b> <small>kn</small></td>
+<td class="gust g-light"><b>4.6</b> <small>kn</small><span class="delta">+1.0</span></td>
+<td><b>NW</b> <span class="deg">319°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">03:00</td>
+<td><b>4.4</b> <small>kn</small></td>
+<td class="gust g-light"><b>5.5</b> <small>kn</small><span class="delta">+1.1</span></td>
+<td><b>NW</b> <span class="deg">305°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">04:00</td>
+<td><b>4.9</b> <small>kn</small></td>
+<td class="gust g-light"><b>6.3</b> <small>kn</small><span class="delta">+1.5</span></td>
+<td><b>WNW</b> <span class="deg">296°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">05:00</td>
+<td><b>3.3</b> <small>kn</small></td>
+<td class="gust g-light"><b>4.3</b> <small>kn</small><span class="delta">+0.9</span></td>
+<td><b>NW</b> <span class="deg">311°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">06:00</td>
+<td><b>1.2</b> <small>kn</small></td>
+<td class="gust g-light"><b>1.2</b> <small>kn</small><span class="delta">+0.0</span></td>
+<td><b>W</b> <span class="deg">277°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">07:00</td>
+<td><b>0.7</b> <small>kn</small></td>
+<td class="gust g-light"><b>2.3</b> <small>kn</small><span class="delta">+1.5</span></td>
+<td><b>NE</b> <span class="deg">52°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">08:00</td>
+<td><b>1.8</b> <small>kn</small></td>
+<td class="gust g-light"><b>5.8</b> <small>kn</small><span class="delta">+4.1</span></td>
+<td><b>NNW</b> <span class="deg">347°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">09:00</td>
+<td><b>4.4</b> <small>kn</small></td>
+<td class="gust g-light"><b>9.8</b> <small>kn</small><span class="delta">+5.3</span></td>
+<td><b>NW</b> <span class="deg">317°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">10:00</td>
+<td><b>7.2</b> <small>kn</small></td>
+<td class="gust g-good"><b>14.0</b> <small>kn</small><span class="delta">+6.8</span></td>
+<td><b>WNW</b> <span class="deg">285°</span></td>
+</tr>
+<tr class="light">
+<td class="time">11:00</td>
+<td><b>8.1</b> <small>kn</small></td>
+<td class="gust g-good"><b>12.4</b> <small>kn</small><span class="delta">+4.3</span></td>
+<td><b>W</b> <span class="deg">276°</span></td>
+</tr>
+<tr class="calm">
+<td class="time">12:00</td>
+<td><b>6.5</b> <small>kn</small></td>
+<td class="gust g-light"><b>11.3</b> <small>kn</small><span class="delta">+4.8</span></td>
+<td><b>WSW</b> <span class="deg">239°</span></td>
+</tr>
+<tr class="light">
+<td class="time">13:00</td>
+<td><b>10.1</b> <small>kn</small></td>
+<td class="gust g-good"><b>15.3</b> <small>kn</small><span class="delta">+5.2</span></td>
+<td><b>WNW</b> <span class="deg">283°</span></td>
+</tr>
+<tr class="good">
+<td class="time">14:00</td>
+<td><b>12.5</b> <small>kn</small></td>
+<td class="gust g-strong"><b>19.1</b> <small>kn</small><span class="delta">+6.6</span></td>
+<td><b>WNW</b> <span class="deg">299°</span></td>
+</tr>
+<tr class="good">
+<td class="time">15:00</td>
+<td><b>13.7</b> <small>kn</small></td>
+<td class="gust g-vstrong"><b>22.6</b> <small>kn</small><span class="delta">+8.9</span></td>
+<td><b>WNW</b> <span class="deg">295°</span></td>
+</tr>
+<tr class="good">
+<td class="time">16:00</td>
+<td><b>12.4</b> <small>kn</small></td>
+<td class="gust g-vstrong"><b>23.7</b> <small>kn</small><span class="delta">+11.4</span></td>
+<td><b>WNW</b> <span class="deg">302°</span></td>
+</tr>
+<tr class="light">
+<td class="time">17:00</td>
+<td><b>10.7</b> <small>kn</small></td>
+<td class="gust g-strong"><b>17.2</b> <small>kn</small><span class="delta">+6.6</span></td>
+<td><b>WNW</b> <span class="deg">302°</span></td>
+</tr>
+<tr class="light">
+<td class="time">18:00</td>
+<td><b>9.4</b> <small>kn</small></td>
+<td class="gust g-strong"><b>18.9</b> <small>kn</small><span class="delta">+9.5</span></td>
+<td><b>NW</b> <span class="deg">308°</span></td>
+</tr>
+<tr class="light">
+<td class="time">19:00</td>
+<td><b>11.3</b> <small>kn</small></td>
+<td class="gust g-strong"><b>17.9</b> <small>kn</small><span class="delta">+6.6</span></td>
+<td><b>NW</b> <span class="deg">313°</span></td>
+</tr>
+<tr class="light">
+<td class="time">20:00</td>
+<td><b>8.5</b> <small>kn</small></td>
+<td class="gust g-good"><b>12.9</b> <small>kn</small><span class="delta">+4.4</span></td>
+<td><b>NNW</b> <span class="deg">338°</span></td>
+</tr></tbody></table></div>
+</section>
+</main><footer>Dane: HungaroMet ODP · U10/V10/WGUST</footer>
+</body></html>
