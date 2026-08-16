@@ -153,11 +153,17 @@ def speed_class(x):
     return "hard"
 
 def gust_class(x):
-    if x < 12: return "g-light"
-    if x < 16: return "g-good"
-    if x < 20: return "g-strong"
-    if x < 24: return "g-vstrong"
-    return "g-hard"
+    if x < 12:
+        return "g-neutral"
+    if x < 16:
+        return "g-light"
+    if x < 20:
+        return "g-strong"
+    if x < 24:
+        return "g-vstrong"
+    if x < 28:
+        return "g-hard"
+    return "g-extreme"
 
 def day_name(dt, today):
     if dt.date() == today: return "Dzisiaj"
@@ -245,7 +251,14 @@ h1{{margin:0;font-size:27px}}header p{{margin:6px 0 0}}main{{padding:10px}}
 th{{background:var(--blue);color:#fff;padding:10px 8px;text-align:right}}th:first-child,td.time{{text-align:left}}td{{padding:10px 8px;text-align:right;border-bottom:1px solid #0001}}
 td b{{font-size:17px}}.delta{{display:inline-block;margin-left:5px;padding:2px 5px;background:#fff9;border-radius:999px;font-size:11px;font-weight:800;color:#4c5964}}
 .calm{{background:var(--calm)}}.light{{background:var(--light)}}.good{{background:var(--good)}}.strong{{background:var(--strong)}}.vstrong{{background:var(--vstrong)}}.hard{{background:var(--hard)}}
-.g-light{{background:#e5f5ef!important}}.g-good{{background:#dff4cf!important}}.g-strong{{background:#fff0b8!important}}.g-vstrong{{background:#ffd79a!important}}.g-hard{{background:#ffb4ad!important}}
+.g-neutral{{background:#f3f5f7!important}}
+.g-light{{background:#dff4cf!important}}
+.g-strong{{background:#ffe68a!important}}
+.g-vstrong{{background:#ffbd66!important}}
+.g-hard{{background:#ff7f73!important}}
+.g-extreme{{background:#b83232!important;color:#fff!important}}
+.g-extreme small,.g-extreme .delta{{color:#fff!important}}
+.g-extreme .delta{{background:rgba(255,255,255,.22)!important}}
 footer{{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}}
 @media(max-width:680px){{.heroGrid,.stats{{grid-template-columns:1fr}}main{{padding:7px}}}}
 </style></head><body>
@@ -257,7 +270,8 @@ footer{{text-align:center;color:#61707c;font-size:12px;padding:8px 12px 24px}}
 <div><span>Najsilniejszy poryw</span><b>{mg_all['gust']:.1f} kn · {mg_all['time']:%H:%M}</b></div>
 <div><span>Aktualizacja</span><b>{now:%H:%M}</b></div>
 </div>
-<div class="legend"><i style="background:var(--calm)">0–8</i><i style="background:var(--light)">8–12</i><i style="background:var(--good)">12–16</i><i style="background:var(--strong)">16–20</i><i style="background:var(--vstrong)">20–24</i><i style="background:var(--hard)">24+ kn</i></div>
+<div class="legend"><i style="background:var(--calm)">wiatr 0–8</i><i style="background:var(--light)">8–12</i><i style="background:var(--good)">12–16</i><i style="background:var(--strong)">16–20</i><i style="background:var(--vstrong)">20–24</i><i style="background:var(--hard)">24+ kn</i></div>
+<div class="legend"><i style="background:#f3f5f7">poryw &lt;12</i><i style="background:#dff4cf">12–16</i><i style="background:#ffe68a">16–20</i><i style="background:#ffbd66">20–24</i><i style="background:#ff7f73">24–28</i><i style="background:#b83232;color:#fff">28+ kn</i></div>
 <div class="meta"><b>Model:</b> HungaroMet WRF · przebieg {run_local:%d.%m.%Y %H:%M}<br>
 <b>Punkt docelowy:</b> {LAT:.4f}°N, {LON:.4f}°E<br>
 <b>Punkt siatki:</b> {point_lat:.4f}°N, {point_lon:.4f}°E</div>
