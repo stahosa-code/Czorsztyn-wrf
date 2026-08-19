@@ -6,10 +6,11 @@ import numpy as np
 import requests
 import xarray as xr
 
-LAT = 49.4375
-LON = 20.2454
+LAT = 49.4495
+LON = 20.2520
 TZ = ZoneInfo("Europe/Warsaw")
 BASE = "https://odp.met.hu/weather/nwp/WRF/nc"
+GRID_URL = "https://odp.met.hu/weather/nwp/latlon/lonlat-WRF.nc"
 RUN_HOURS = (0, 6, 12, 18)
 VARS = ("U10", "V10", "WGUST")
 USER_AGENT = "Czorsztyn-WRF-1.5km/1.0"
@@ -114,28 +115,109 @@ def latlon_arrays(ds, da):
 
     raise RuntimeError("Nie znaleziono współrzędnych siatki w pliku NetCDF.")
 
-def nearest_value(data, wanted):
+def load_official_grid():
+    """
+    Pobiera oficjalny plik współrzędnych HungaroMet dla WRF.
+    Dzięki temu nie traktujemy indeksów x/y jak stopni geograficznych.
+    """
+    r = requests.get(
+        GRID_URL,
+        timeout=120,
+        headers={"User-Agent": USER_AGENT},
+    )
+    r.raise_for_status()
+
+    ds = open_nc(r.content)
+    try:
+        names = {name.lower(): name for name in ds.variables}
+
+        lat_name = next(
+            (names[k] for k in ("lat", "latitude") if k in names),
+            None
+        )
+        lon_name = next(
+            (names[k] for k in ("lon", "longitude") if k in names),
+            None
+        )
+
+        if lat_name is None:
+            lat_name = next(
+                (n for n in ds.variables if "lat" in n.lower()),
+                None
+            )
+        if lon_name is None:
+            lon_name = next(
+                (n for n in ds.variables if "lon" in n.lower()),
+                None
+            )
+
+        if lat_name is None or lon_name is None:
+            raise RuntimeError(
+                "Nie znaleziono LAT/LON w lonlat-WRF.nc."
+            )
+
+        lat = np.asarray(ds[lat_name]).squeeze()
+        lon = np.asarray(ds[lon_name]).squeeze()
+
+        if lat.ndim == 1 and lon.ndim == 1:
+            lon2d, lat2d = np.meshgrid(lon, lat)
+            return lat2d, lon2d
+
+        if lat.ndim == 2 and lon.ndim == 2:
+            return lat, lon
+
+        raise RuntimeError(
+            f"Nieoczekiwany kształt siatki: "
+            f"LAT {lat.shape}, LON {lon.shape}"
+        )
+    finally:
+        ds.close()
+
+
+OFFICIAL_LAT, OFFICIAL_LON = load_official_grid()
+
+COSLAT = math.cos(math.radians(LAT))
+GRID_D2 = (
+    (OFFICIAL_LAT - LAT) ** 2
+    + ((OFFICIAL_LON - LON) * COSLAT) ** 2
+)
+GRID_INDEX = np.unravel_index(
+    np.nanargmin(GRID_D2),
+    GRID_D2.shape
+)
+GRID_LAT = float(OFFICIAL_LAT[GRID_INDEX])
+GRID_LON = float(OFFICIAL_LON[GRID_INDEX])
+
+
+def value_from_official_grid(data, wanted):
     ds = open_nc(data)
     try:
         da = pick_data_var(ds, wanted).squeeze()
         vals = np.asarray(da, dtype=float)
-        lat, lon = latlon_arrays(ds, da)
-        lat = np.asarray(lat).squeeze()
-        lon = np.asarray(lon).squeeze()
 
-        # Dopasowanie do ostatnich dwóch wymiarów pola.
-        if lat.shape != vals.shape:
-            while vals.ndim > 2:
-                vals = vals[0]
-            if lat.ndim == 1 and lon.ndim == 1:
-                lon, lat = np.meshgrid(lon, lat)
+        while vals.ndim > 2:
+            vals = vals[0]
 
-        coslat = math.cos(math.radians(LAT))
-        d2 = (lat - LAT) ** 2 + ((lon - LON) * coslat) ** 2
-        idx = np.unravel_index(np.nanargmin(d2), d2.shape)
-        return float(vals[idx]), float(lat[idx]), float(lon[idx])
+        y, x = GRID_INDEX
+
+        if vals.shape == OFFICIAL_LAT.shape:
+            return float(vals[y, x])
+
+        if vals.T.shape == OFFICIAL_LAT.shape:
+            return float(vals[x, y])
+
+        raise RuntimeError(
+            f"Pole {wanted} ma rozmiar {vals.shape}, "
+            f"a siatka {OFFICIAL_LAT.shape}."
+        )
     finally:
         ds.close()
+
+
+def nearest_value(data, wanted):
+    value = value_from_official_grid(data, wanted)
+    return value, GRID_LAT, GRID_LON
+
 
 def ms_to_kn(x): return x * 1.943844492
 
